@@ -1,13 +1,28 @@
 import * as React from 'react';
 
-interface ComponentState {
-	responseText: string;
-}
+import {
+	connect,
+} from 'react-redux';
+
+import {
+	getPath,
+} from '../selectors';
+
+import {
+	State,
+} from '../reducers';
 
 import './FrameContainer.css';
 
-export class FrameContainer extends React.Component<{}, ComponentState> {
-	constructor(props: {}) {
+interface ComponentProps {
+	path: ReturnType<typeof getPath>;
+}
+
+interface ComponentState {
+	responseText: string;
+}
+class FrameComponent extends React.Component<ComponentProps, ComponentState> {
+	constructor(props: ComponentProps) {
 		super(props);
 		this.state = {
 			responseText: '',
@@ -34,7 +49,21 @@ export class FrameContainer extends React.Component<{}, ComponentState> {
 	}
 
 	public componentDidMount() {
-		this.requestCORS('http://mhf.inven.co.kr/dataninfo/mhw/armor/');
+		const {
+			path,
+		} = this.props;
+
+		this.requestCORS(path);
+	}
+
+	public componentDidUpdate(prevProps: ComponentProps) {
+		const {
+			path,
+		} = this.props;
+
+		if(prevProps.path !== path){
+			this.requestCORS(path);
+		}
 	}
 
 	public render() {
@@ -50,3 +79,11 @@ export class FrameContainer extends React.Component<{}, ComponentState> {
 		);
 	}
 }
+
+function mapStateToProps(state: State) {
+	return {
+		path: getPath(state),
+	};
+}
+
+export const FrameContainer = connect(mapStateToProps)(FrameComponent);

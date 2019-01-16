@@ -15,3 +15,9 @@ export const getPath = createSelector([
 ], (state) => {
 	return state.path;
 });
+
+export const getIsOpen = createSelector([
+	getState,
+], (state) => {
+	return state.isOpen;
+});
