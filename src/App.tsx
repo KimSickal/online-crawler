@@ -1,17 +1,36 @@
 import * as React from 'react';
 
 import {
+	createStore,
+	applyMiddleware,
+} from 'redux';
+
+import {
+	Provider,
+} from 'react-redux';
+
+import thunk from 'redux-thunk';
+
+import {
 	FrameContainer,
 } from './containers';
+
+import {
+	reducers,
+} from './reducers';
 
 import './App.css';
 
 export class App extends React.Component {
 	public render() {
 		return (
-			<div className="App">
-				<FrameContainer />
-			</div>
+			<Provider
+				store={createStore(reducers, applyMiddleware(thunk))}
+			>
+				<div className="App">
+					<FrameContainer />
+				</div>
+			</Provider>
 		);
 	}
 }
