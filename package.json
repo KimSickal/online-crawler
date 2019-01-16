@@ -1,8 +1,8 @@
 {
-  "name": "react-cardgame",
+  "name": "online-crawler",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kimsickal.github.io/react-snake-game",
+  "homepage": "https://kimsickal.github.io/online-crawler",
   "dependencies": {
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
