@@ -25,6 +25,7 @@ import {
 
 import {
 	NavigatorAddressComponent,
+	NavigatorQueryComponent,
 } from '../components';
 
 import './NavigatorContainer.css';
@@ -49,6 +50,9 @@ class NaviagtorComponent extends React.Component<ComponentProps> {
 				}}
 			>
 				<NavigatorAddressComponent
+					{...this.props}
+				/>
+				<NavigatorQueryComponent
 					{...this.props}
 				/>
 			</div>

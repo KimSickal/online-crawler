@@ -1,9 +1,7 @@
 .navigator {
-	height: 30px;
+	height: 50px;
 	width: 100%;
 	background-color: #343a40;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	transition: height 0.3s;
+	transition: height 0.2s;
 	transition-timing-function: ease;
 }

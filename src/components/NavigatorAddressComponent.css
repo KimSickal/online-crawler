@@ -3,6 +3,8 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .navigator_searchBar_input {
