@@ -12,7 +12,8 @@ import {
 import thunk from 'redux-thunk';
 
 import {
-	FrameContainer, NavigatorContainer,
+	FrameContainer,
+	NavigatorContainer,
 } from './containers';
 
 import {
@@ -28,8 +29,8 @@ export class App extends React.Component {
 				store={createStore(reducers, applyMiddleware(thunk))}
 			>
 				<div className="App">
-					<NavigatorContainer	/>
 					<FrameContainer />
+					<NavigatorContainer	/>
 				</div>
 			</Provider>
 		);

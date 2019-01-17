@@ -11,6 +11,14 @@ import {
 } from 'react-redux';
 
 import {
+	FaAngleDoubleUp,
+	FaAngleDoubleDown,
+	FaRedoAlt,
+	FaArrowLeft,
+	FaSearch,
+} from 'react-icons/fa';
+
+import {
 	updatePath,
 	toggleOpen,
 } from '../actions';
@@ -72,30 +80,41 @@ class NaviagtorComponent extends React.Component<ComponentProps, ComponentState>
 			isOpen,
 		} = this.props;
 
+		const ExpandIconComponent = isOpen ? FaAngleDoubleDown : FaAngleDoubleUp;
+
 		return (
 			<div
 				className={'navigator'}
 				style={{
-					height: isOpen ? '300px' : '100px',
+					height: isOpen ? '300px' : undefined,
 				}}
 			>
-				<button
-					type={'button'}
-					onClick={this.props.toggleOpen}
+				<div
+					className={'navigator_searchBar'}
 				>
-					{'toggle'}
-				</button>
-				<input
-					type={'text'}
-					value={inputPath}
-					onChange={this.onChange}
-				/>
-				<button
-					type={'button'}
-					onClick={this.onClick}
-				>
-					{'Go'}
-				</button>
+					<FaArrowLeft
+						className={'navigator_searchBar_icon'}
+					/>
+					<ExpandIconComponent
+						className={'navigator_searchBar_icon'}
+						onClick={this.props.toggleOpen}
+					/>
+					<FaRedoAlt
+						className={'navigator_searchBar_icon'}
+					/>
+					<input
+						className={'navigator_searchBar_input'}
+						type={'text'}
+						value={inputPath}
+						onChange={this.onChange}
+					/>
+					<FaSearch
+						className={'navigator_searchBar_icon navigator_searchBar_button'}
+						onClick={this.onClick}
+					>
+						{'Go'}
+					</FaSearch>
+				</div>
 			</div>
 		);
 	}

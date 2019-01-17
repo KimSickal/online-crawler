@@ -1,4 +1,30 @@
 .navigator {
 	width: 100%;
-	border-bottom: solid 2px grey;
+	border-top: solid 2px grey;
+}
+
+.navigator_searchBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.navigator_searchBar_input {
+	flex: 1;
+	background-color: #e9ecef;
+	height: 30px;
+	border-width: 0;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 15px;
+}
+
+.navigator_searchBar_icon {
+	font-size: 20px;
+	color: #868e96;
+}
+
+.navigator_searchBar_button {
+	margin-left: -30px;
 }
