@@ -50,7 +50,10 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 		const {
 			inputPath,
 		} = this.state;
-		this.props.updatePath(inputPath);
+		this.props.updatePath('/');
+		setTimeout(() => {
+			this.props.updatePath(inputPath);
+		}, 1);
 	}
 
 	private onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
