@@ -41,6 +41,7 @@ class FrameComponent extends React.Component<ComponentProps, ComponentState> {
 						return;
 					}
 					iframeComponent.src = URL.createObjectURL(request.response);
+					console.log(request.response);
 				}
 			}
 		};

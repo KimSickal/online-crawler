@@ -6,3 +6,24 @@
 	opacity: 1;
 	transition: opacity 0.2s;
 }
+
+.navigator_query_row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navigator_query_row_cell {
+	width: 200px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navigator_query_row_cell_input {
+	height: 20px;
+	width: 100px;
+	border-radius: 5px;
+}

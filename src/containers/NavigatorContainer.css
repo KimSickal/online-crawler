@@ -2,6 +2,14 @@
 	height: 50px;
 	width: 100%;
 	background-color: #343a40;
+	color: #e9ecef;
 	transition: height 0.2s;
 	transition-timing-function: ease;
+}
+
+input {
+	background-color: #e9ecef;
+	color: #343a40;
+	border-width: 0;
+	padding: 0px;
 }

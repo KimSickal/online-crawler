@@ -9,12 +9,8 @@
 
 .navigator_searchBar_input {
 	flex: 1;
-	background-color: #e9ecef;
-	color: #343a40;
 	height: 30px;
 	font-size: 14px;
-	border-width: 0;
-	padding: 0px;
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-left: 15px;
