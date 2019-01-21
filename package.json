@@ -17,9 +17,9 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
-  "main": "build/dist/main.js",
+  "main": "src/electron-starter.js",
   "scripts": {
-    "start": "nf start",
+    "start": "nf start -p 3000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "predeploy": "npm run build",

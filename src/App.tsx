@@ -12,8 +12,9 @@ import {
 import thunk from 'redux-thunk';
 
 import {
-	FrameContainer,
+	// FrameContainer,
 	NavigatorContainer,
+	WebviewContainer,
 } from './containers';
 
 import {
@@ -29,8 +30,9 @@ export class App extends React.Component {
 				store={createStore(reducers, applyMiddleware(thunk))}
 			>
 				<div className="App">
-					<FrameContainer />
-					<NavigatorContainer	/>
+					{/* <FrameContainer /> */}
+					<WebviewContainer />
+					<NavigatorContainer />
 				</div>
 			</Provider>
 		);
