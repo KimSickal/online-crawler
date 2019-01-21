@@ -27,7 +27,8 @@
     "react-start": "react-scripts start",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron ."
+    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "tsc": "tsc src/electron-starter.ts src/electron-wait-react.ts"
   },
   "eslintConfig": {
     "extends": "react-app"

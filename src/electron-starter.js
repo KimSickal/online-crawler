@@ -9,12 +9,11 @@ function createWindow() {
         width: 800,
         height: 600
     });
-    var startUrl = process.env.ELCTRON_START_URL || url.format({
+    var startUrl = process.env.ELECTRON_START_URL || url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file',
         slashes: true
     });
-    console.log(startUrl);
     mainWindow.loadURL(startUrl);
 }
 electron_1.app.on('ready', createWindow);
