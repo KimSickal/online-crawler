@@ -54,7 +54,6 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		const currSrc = this.webview.getAttribute('src');
 
 		if(currSrc !== null && currSrc !== path) {
-			console.log(`navigated to ${currSrc}`);
 			this.props.updatePath(currSrc);
 		}
 	}
