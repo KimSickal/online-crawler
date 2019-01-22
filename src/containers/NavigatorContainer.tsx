@@ -13,6 +13,7 @@ import {
 import {
 	updatePath,
 	toggleOpen,
+	updateWebviewRequest,
 } from '../actions';
 
 import {
@@ -21,6 +22,7 @@ import {
 
 import {
 	getIsOpen,
+	getPath,
 } from '../selectors';
 
 import {
@@ -32,8 +34,10 @@ import './NavigatorContainer.css';
 
 interface ComponentProps {
 	isOpen: boolean;
+	path: ReturnType<typeof getPath>;
 
 	updatePath: typeof updatePath;
+	updateWebviewRequest: typeof updateWebviewRequest;
 	toggleOpen: typeof toggleOpen;
 }
 
@@ -62,6 +66,7 @@ class NaviagtorComponent extends React.Component<ComponentProps> {
 
 function mapStateToProps(state: State) {
 	return {
+		path: getPath(state),
 		isOpen: getIsOpen(state),
 	};
 }
@@ -69,6 +74,7 @@ function mapStateToProps(state: State) {
 function mapDispatchToProps(dispatch: Dispatch<AnyAction>) {
 	return bindActionCreators({
 		updatePath,
+		updateWebviewRequest,
 		toggleOpen,
 	}, dispatch);
 }

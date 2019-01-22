@@ -10,18 +10,17 @@ import {
 import {
 	updatePath,
 	toggleOpen,
+	updateWebviewRequest,
 } from '../actions';
-
-import {
-	initialPath,
-} from '../constants/path';
 
 import './NavigatorAddressComponent.css';
 
 interface ComponentProps {
 	isOpen: boolean;
+	path: string;
 
 	updatePath: typeof updatePath;
+	updateWebviewRequest: typeof updateWebviewRequest;
 	toggleOpen: typeof toggleOpen;
 }
 
@@ -33,10 +32,10 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 	constructor(props: ComponentProps) {
 		super(props);
 		this.state = {
-			inputPath: initialPath,
+			inputPath: this.props.path,
 		};
 		this.onChange = this.onChange.bind(this);
-		this.onClick = this.onClick.bind(this);
+		this.onClickSearch = this.onClickSearch.bind(this);
 		this.onKeyPress = this.onKeyPress.bind(this);
 	}
 
@@ -46,21 +45,29 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 		});
 	}
 
-	private onClick() {
+	private onClickSearch() {
 		const {
 			inputPath,
 		} = this.state;
-		this.props.updatePath('/');
-		setTimeout(() => {
-			this.props.updatePath(inputPath);
-		}, 1);
+
+		this.props.updatePath(inputPath);
+		this.props.updateWebviewRequest();
 	}
 
 	private onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
 		if(event.charCode === 13) {
-			this.onClick();
+			this.onClickSearch();
 		}
 		return false;
+	}
+
+	public componentDidUpdate(prevProps: ComponentProps) {
+		console.log(prevProps.path, this.props.path);
+		if(prevProps.path !== this.props.path) {
+			this.setState({
+				inputPath: this.props.path,
+			});
+		}
 	}
 
 	public render() {
@@ -84,7 +91,7 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 				/>
 				<FaRedoAlt
 					className={'navigator_searchBar_icon'}
-					onClick={this.onClick}
+					onClick={this.props.updateWebviewRequest}
 				/>
 				<input
 					className={'navigator_searchBar_input'}
@@ -95,7 +102,7 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 				/>
 				<div
 					className={'navigator_searchBar_button'}
-					onClick={this.onClick}
+					onClick={this.onClickSearch}
 				>
 					<FaSearch
 						className={'navigator_searchBar_icon'}

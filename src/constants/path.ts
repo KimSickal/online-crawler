@@ -1,1 +1,1 @@
-export const initialPath = 'https://naver.com';
+export const initialPath = 'https://google.com/';

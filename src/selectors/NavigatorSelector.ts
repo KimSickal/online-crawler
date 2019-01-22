@@ -21,3 +21,9 @@ export const getIsOpen = createSelector([
 ], (state) => {
 	return state.isOpen;
 });
+
+export const getIsUpdateNeeded = createSelector([
+	getState,
+], (state) => {
+	return state.isUpdateNeeded;
+});
