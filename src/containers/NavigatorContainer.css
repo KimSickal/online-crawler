@@ -1,10 +1,11 @@
 .navigator {
 	height: 50px;
 	width: 100%;
-	background-color: #343a40;
-	color: #e9ecef;
+	background-color: #f8f9fa;
+	color: #343a40;
 	transition: height 0.2s;
 	transition-timing-function: ease;
+	border-bottom: solid #e9ecef 1px;
 }
 
 input {

@@ -79,7 +79,7 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 			isOpen,
 		} = this.props;
 
-		const ExpandIconComponent = isOpen ? FaAngleDoubleDown : FaAngleDoubleUp;
+		const ExpandIconComponent = isOpen ? FaAngleDoubleUp : FaAngleDoubleDown;
 
 		return (
 			<div

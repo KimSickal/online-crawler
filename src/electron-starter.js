@@ -7,7 +7,12 @@ var mainWindow;
 function createWindow() {
     mainWindow = new electron_1.BrowserWindow({
         width: 800,
-        height: 600
+        height: 600,
+        autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true,
+            webviewTag: true
+        }
     });
     var startUrl = process.env.ELECTRON_START_URL || url.format({
         pathname: path.join(__dirname, '/../build/index.html'),

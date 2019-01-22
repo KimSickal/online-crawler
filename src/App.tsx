@@ -30,9 +30,9 @@ export class App extends React.Component {
 				store={createStore(reducers, applyMiddleware(thunk))}
 			>
 				<div className="App">
-					{/* <FrameContainer /> */}
-					<WebviewContainer />
 					<NavigatorContainer />
+					<WebviewContainer />
+					{/* <FrameContainer /> */}
 				</div>
 			</Provider>
 		);
