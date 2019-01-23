@@ -62,7 +62,6 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 	}
 
 	public componentDidUpdate(prevProps: ComponentProps) {
-		console.log(prevProps.path, this.props.path);
 		if(prevProps.path !== this.props.path) {
 			this.setState({
 				inputPath: this.props.path,
