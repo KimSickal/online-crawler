@@ -1,7 +1,6 @@
 import {
 	app,
 	BrowserWindow,
-	remote,
 } from 'electron';
 
 import * as path from 'path';
@@ -34,8 +33,6 @@ function createWindow() {
 	(global as Global).constants = {
 		dirName: __dirname,
 	};
-
-	console.log(remote.getGlobal('constants'));
 
 	mainWindow.loadURL(startUrl);
 }

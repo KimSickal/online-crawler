@@ -22,7 +22,6 @@ function createWindow() {
     global.constants = {
         dirName: __dirname
     };
-    console.log(electron_1.remote.getGlobal('constants'));
     mainWindow.loadURL(startUrl);
 }
 electron_1.app.on('ready', createWindow);
