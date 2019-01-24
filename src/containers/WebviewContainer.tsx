@@ -1,6 +1,10 @@
 import * as React from 'react';
 
 import {
+	WebviewTag,
+} from 'electron';
+
+import {
 	Dispatch,
 	AnyAction,
 	bindActionCreators,
@@ -38,9 +42,11 @@ class WebviewComponent extends React.Component<ComponentProps> {
 	constructor(props: ComponentProps) {
 		super(props);
 		this.onLoad = this.onLoad.bind(this);
+		this.goBack = this.goBack.bind(this);
+		this.goForward = this.goForward.bind(this);
 	}
 
-	private webview: HTMLWebViewElement | null = null;
+	private webview: WebviewTag | null = null;
 
 	private onLoad() {
 		const {
@@ -58,6 +64,20 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		}
 	}
 
+	private goBack() {
+		if(this.webview !== null) {
+			this.webview.goBack();
+			this.onLoad();
+		}
+	}
+
+	private goForward() {
+		if(this.webview !== null) {
+			this.webview.goForward();
+			this.onLoad();
+		}
+	}
+
 	public componentDidMount() {
 		const {
 			path,
@@ -66,8 +86,22 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		if(this.webview === null) {
 			return;
 		}
+		window.addEventListener('keydown', this.goBack);
 		this.webview.addEventListener('load-commit', this.onLoad);
 		this.webview.setAttribute('src', path);
+
+		this.webview.addEventListener('dom-ready', () => {
+			if(this.webview === null) {
+				return;
+			}
+			console.log('send message to webview');
+			this.webview.openDevTools();
+			this.webview.send('crawling');
+		});
+		this.webview.addEventListener('ipc-message', (event: Electron.IpcMessageEvent) => {
+			console.log(event.args);
+		});
+		console.log(`file://${__dirname}/webviewPreLoader.js`);
 	}
 
 	public componentWillUnmount() {
@@ -98,7 +132,9 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		return (
 			<webview
 				id={'iframe'}
-				ref={(ref) => this.webview = ref}
+				ref={(ref) => this.webview = ref as WebviewTag}
+				// preload={`file://${__dirname}/webviewPreLoader.js`}
+				preload={'file://./../../webviewPreLoader.js'}
 			/>
 		);
 	}
