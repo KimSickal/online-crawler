@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {
-	WebviewTag,
+	WebviewTag, remote,
 } from 'electron';
 
 import {
@@ -101,6 +101,8 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		this.webview.addEventListener('ipc-message', (event: Electron.IpcMessageEvent) => {
 			console.log(event.args);
 		});
+
+		console.log(remote.getGlobal('dirName'));
 	}
 
 	public componentWillUnmount() {
