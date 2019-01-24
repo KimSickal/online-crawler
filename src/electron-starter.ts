@@ -1,11 +1,16 @@
 import {
 	app,
 	BrowserWindow,
+	remote,
 } from 'electron';
 
 import * as path from 'path';
 
 import * as url from 'url';
+
+interface Global extends NodeJS.Global {
+	constants: {[name: string]: any};
+}
 
 let mainWindow: BrowserWindow;
 
@@ -25,6 +30,12 @@ function createWindow() {
 		protocol: 'file',
 		slashes: true,
 	});
+
+	(global as Global).constants = {
+		dirName: __dirname,
+	};
+
+	console.log(remote.getGlobal('constants'));
 
 	mainWindow.loadURL(startUrl);
 }
