@@ -101,7 +101,6 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		this.webview.addEventListener('ipc-message', (event: Electron.IpcMessageEvent) => {
 			console.log(event.args);
 		});
-		console.log(`file://${__dirname}/webviewPreLoader.js`);
 	}
 
 	public componentWillUnmount() {
@@ -133,8 +132,7 @@ class WebviewComponent extends React.Component<ComponentProps> {
 			<webview
 				id={'iframe'}
 				ref={(ref) => this.webview = ref as WebviewTag}
-				// preload={`file://${__dirname}/webviewPreLoader.js`}
-				preload={'file://./../../webviewPreLoader.js'}
+				preload={'file://C:/Users/Studio_OBS_5min/Documents/online-crawler/build/webviewPreLoader.js'}
 			/>
 		);
 	}
