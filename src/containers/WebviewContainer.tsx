@@ -1,8 +1,10 @@
 import * as React from 'react';
 
 import {
-	WebviewTag, remote,
+	WebviewTag,
 } from 'electron';
+
+const remote = (window as any).require('electron').remote;
 
 import {
 	Dispatch,
@@ -102,7 +104,7 @@ class WebviewComponent extends React.Component<ComponentProps> {
 			console.log(event.args);
 		});
 
-		console.log(remote.getGlobal('dirName'));
+		console.log(remote.getGlobal('constants')['dirName']);
 	}
 
 	public componentWillUnmount() {
@@ -134,7 +136,7 @@ class WebviewComponent extends React.Component<ComponentProps> {
 			<webview
 				id={'iframe'}
 				ref={(ref) => this.webview = ref as WebviewTag}
-				preload={'file://C:/Users/Studio_OBS_5min/Documents/online-crawler/build/webviewPreLoader.js'}
+				preload={`file://${remote.getGlobal('constants')['dirName']}/../build/webviewPreLoader.js`}
 			/>
 		);
 	}

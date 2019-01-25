@@ -48,7 +48,8 @@
     "object-literal-shorthand": [
       false,
       "never"
-    ]
+    ],
+    "no-string-literal": false
   },
   "linterOptions": {
     "exclude": [
