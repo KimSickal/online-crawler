@@ -30,6 +30,11 @@ import {
 	updateWebviewReceive,
 } from '../actions';
 
+import {
+	RequestIpcKeys,
+	ReceiveIpcKeys,
+} from '../constants';
+
 import './FrameContainer.css';
 
 interface ComponentProps {
@@ -90,7 +95,7 @@ class WebviewComponent extends React.Component<ComponentProps, ComponentState> {
 
 	private getIpcResponse(event: Electron.IpcMessageEvent) {
 		console.log(`received ipc response: ${event.channel}`);
-		if(event.channel === 'response-get-body') {
+		if(event.channel === ReceiveIpcKeys.RECEIVE_GET_BODY) {
 			const body = document.createElement('body');
 			body.innerHTML = event.args[0];
 			body.querySelectorAll('div').forEach((div) => {
@@ -119,7 +124,7 @@ class WebviewComponent extends React.Component<ComponentProps, ComponentState> {
 			}
 			console.log('send message to webview');
 			this.webview.openDevTools();
-			this.webview.send('get-body');
+			this.webview.send(RequestIpcKeys.REQUEST_GET_BODY);
 		});
 	}
 

@@ -5,7 +5,7 @@ import {
 
 import {
 	initialPath,
-} from '../constants/path';
+} from '../constants';
 
 export interface NavigatorState {
 	path: string;
