@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "electron": "npm run tsc && electron .",
     "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "tsc": "tsc src/scripts/electron-starter.ts src/scripts/electron-wait-react.ts src/scripts/webviewPreLoader.ts && mv src/scripts/*.js public/scripts/"
+    "tsc": "tsc src/scripts/electron-starter.ts src/scripts/electron-wait-react.ts src/scripts/webviewPreLoader.ts && mv src/scripts/*.js public/scripts/ && cp public/scripts/* build/scripts"
   },
   "eslintConfig": {
     "extends": "react-app"
