@@ -36,6 +36,7 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 		};
 		this.onChange = this.onChange.bind(this);
 		this.onClickSearch = this.onClickSearch.bind(this);
+		this.onClickInput = this.onClickInput.bind(this);
 		this.onKeyPress = this.onKeyPress.bind(this);
 	}
 
@@ -54,11 +55,14 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 		this.props.updateWebviewRequest();
 	}
 
+	private onClickInput(event: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+		(event.target as HTMLInputElement).select();
+	}
+
 	private onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
 		if(event.charCode === 13) {
 			this.onClickSearch();
 		}
-		return false;
 	}
 
 	public componentDidUpdate(prevProps: ComponentProps) {
@@ -96,6 +100,7 @@ export class NavigatorAddressComponent extends React.Component<ComponentProps, C
 					className={'navigator_searchBar_input'}
 					type={'text'}
 					value={inputPath}
+					onClick={this.onClickInput}
 					onChange={this.onChange}
 					onKeyPress={this.onKeyPress}
 				/>
