@@ -157,7 +157,7 @@ class WebviewComponent extends React.Component<ComponentProps, ComponentState> {
 			<webview
 				id={'iframe'}
 				ref={(ref) => this.webview = ref as WebviewTag}
-				preload={`file://${remote.getGlobal('constants')['dirName']}/webviewPreLoader.js`}
+				preload={remote.getGlobal('constants')['webviewPreLoaderUrl']}
 			/>
 		);
 	}

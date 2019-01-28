@@ -5,7 +5,7 @@ import {
 import {
 	RequestIpcKeys,
 	ReceiveIpcKeys,
-} from '../constants';
+} from '../src/constants';
 
 console.log('preLoader ready');
 
