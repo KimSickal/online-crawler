@@ -6,8 +6,8 @@ var url = require("url");
 var mainWindow;
 function createWindow() {
     mainWindow = new electron_1.BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1600,
+        height: 900,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
