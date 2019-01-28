@@ -2,8 +2,12 @@ import {
 	ipcRenderer,
 } from 'electron';
 
-console.log('preLoader called');
+console.log('preLoader ready');
 
-ipcRenderer.on('crawling', () => {
-	alert('receive message');
+ipcRenderer.on('get-body', () => {
+	console.log('message received: body');
+
+	const body = document.body;
+
+	ipcRenderer.sendToHost('response-get-body', body.innerHTML);
 });

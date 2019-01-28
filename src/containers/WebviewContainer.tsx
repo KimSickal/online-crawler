@@ -40,12 +40,20 @@ interface ComponentProps {
 	updateWebviewReceive: typeof updateWebviewReceive;
 }
 
-class WebviewComponent extends React.Component<ComponentProps> {
+interface ComponentState {
+	webviewBody: HTMLBodyElement | null;
+}
+
+class WebviewComponent extends React.Component<ComponentProps, ComponentState> {
 	constructor(props: ComponentProps) {
 		super(props);
+		this.state = {
+			webviewBody: null,
+		};
 		this.onLoad = this.onLoad.bind(this);
 		this.goBack = this.goBack.bind(this);
 		this.goForward = this.goForward.bind(this);
+		this.getIpcResponse = this.getIpcResponse.bind(this);
 	}
 
 	private webview: WebviewTag | null = null;
@@ -80,6 +88,17 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		}
 	}
 
+	private getIpcResponse(event: Electron.IpcMessageEvent) {
+		console.log(`received ipc response: ${event.channel}`);
+		if(event.channel === 'response-get-body') {
+			const body = document.createElement('body');
+			body.innerHTML = event.args[0];
+			body.querySelectorAll('div').forEach((div) => {
+				console.log(div);
+			});
+		}
+	}
+
 	public componentDidMount() {
 		const {
 			path,
@@ -92,19 +111,16 @@ class WebviewComponent extends React.Component<ComponentProps> {
 		this.webview.addEventListener('load-commit', this.onLoad);
 		this.webview.setAttribute('src', path);
 
+		this.webview.addEventListener('ipc-message', this.getIpcResponse);
+
 		this.webview.addEventListener('dom-ready', () => {
 			if(this.webview === null) {
 				return;
 			}
 			console.log('send message to webview');
 			this.webview.openDevTools();
-			this.webview.send('crawling');
+			this.webview.send('get-body');
 		});
-		this.webview.addEventListener('ipc-message', (event: Electron.IpcMessageEvent) => {
-			console.log(event.args);
-		});
-
-		console.log(remote.getGlobal('constants')['dirName']);
 	}
 
 	public componentWillUnmount() {
