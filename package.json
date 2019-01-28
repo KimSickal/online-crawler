@@ -2,7 +2,6 @@
   "name": "online-crawler",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
@@ -17,18 +16,22 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
-  "main": "build/scripts/electron-starter.js",
+  "main": "build/electron-starter.js",
   "scripts": {
-    "start": "nf start -p 3000",
-    "build": "react-scripts build",
+    "start": "npm run build:etc && nf start -p 3000",
+    "start:cra": "cross-env BROWSER=none react-scripts start",
+    "start:electron": "node scripts/electron-wait-react",
+    "build": "npm run build:cra && npm run build:etc",
+    "build:cra": "react-scripts build",
+    "build:etc": "npm run build:electron && npm run build:webview",
+    "build:electron": "tsc electron/electron-starter.ts --outDir build",
+    "build:webview": "webpack --config webpack.config.webview.js",
+    "electron": "electron .",
+    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "test": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "react-start": "react-scripts start",
-    "eject": "react-scripts eject",
-    "electron": "npm run tsc && electron .",
-    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "tsc": "tsc src/scripts/electron-starter.ts src/scripts/electron-wait-react.ts src/scripts/webviewPreLoader.ts && mv src/scripts/*.js public/scripts/ && cp public/scripts/* build/scripts"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,11 +43,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "electron": "^4.0.1",
     "electron-builder": "^20.38.5",
     "foreman": "^3.0.1",
     "gh-pages": "^2.0.1",
+    "ts-loader": "^5.3.3",
     "tslint": "^5.12.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "webpack-cli": "^3.2.1"
   }
 }

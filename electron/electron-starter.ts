@@ -25,13 +25,16 @@ function createWindow() {
 	});
 
 	const startUrl = process.env.ELECTRON_START_URL || url.format({
-		pathname: path.join(__dirname, '/../build/index.html'),
+		pathname: path.join(__dirname, '../build/index.html'),
 		protocol: 'file',
 		slashes: true,
 	});
 
+	const webviewPreLoaderPath = path.resolve(__dirname, '../build/webviewPreLoader.js');
+	const webviewPreLoaderUrl = `file://${webviewPreLoaderPath}`;
+
 	(global as Global).constants = {
-		dirName: __dirname,
+		webviewPreLoaderUrl,
 	};
 
 	mainWindow.loadURL(startUrl);

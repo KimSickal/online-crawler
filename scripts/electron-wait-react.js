@@ -1,4 +1,4 @@
-import * as net from 'net';
+const net = require('net');
 
 const port = process.env.PORT ? (Number(process.env.PORT) - 100) : 3000;
 
@@ -14,7 +14,7 @@ const tryConnection = () => client.connect({port: port}, () => {
 		console.log(`URL: ${process.env.ELECTRON_START_URL}`);
 		startedElectron = true;
 		const exec = require('child_process').exec;
-		exec('npm run electron');
+		exec('electron .');
 	}
 });
 
